@@ -9,7 +9,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrl: './app-table.component.scss'
 })
 export class AppTableComponent    {
-
+ 
 displayColumns: string[] = ['position', 'name', 'weight', 'symbol'];
 dataSource  = new MatTableDataSource (ELEMENT_DATA)
 @ViewChild(MatSort) sort?: MatSort;
@@ -23,6 +23,8 @@ applyFilter(value:Event){
     this.dataSource.filter = targ.value.trim().toLowerCase();
   }
 }
+
+
 }
 
 

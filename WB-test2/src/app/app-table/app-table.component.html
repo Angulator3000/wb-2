@@ -1,6 +1,9 @@
-<div >
+
+<div class="table">
+
 
   <mat-form-field>
+
     <input (keydown)="applyFilter($event)" matInput placeholder="filter" type="text">
   </mat-form-field>
 
@@ -19,7 +22,7 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header> Weight </mat-header-cell>
       <mat-cell *matCellDef="let el"> {{el.weight}} </mat-cell>
     </ng-container>
-    
+
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
       <mat-cell *matCellDef="let el"> {{el.symbol}} </mat-cell>

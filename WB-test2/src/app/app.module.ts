@@ -9,11 +9,15 @@ import { AppTableComponent } from './app-table/app-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatSortModule } from '@angular/material/sort';
+import { AppStartPageComponent } from './app-start-page/app-start-page.component';
+import { MatButtonModule } from '@angular/material/button';
+import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppTableComponent
+    AppTableComponent,
+    AppStartPageComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSortModule
+    MatSortModule,
+    MatButtonModule,
+    BrowserAnimationsModule
   ],
   providers: [
     provideAnimationsAsync()
