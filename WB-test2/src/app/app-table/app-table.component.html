@@ -1,0 +1,32 @@
+<div >
+
+  <mat-form-field>
+    <input (keydown)="applyFilter($event)" matInput placeholder="filter" type="text">
+  </mat-form-field>
+
+  <mat-table #table [dataSource]="dataSource " matSort>
+    <ng-container matColumnDef="position">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+      <mat-cell *matCellDef="let el"> {{el.position}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let el"> {{el.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let el"> {{el.weight}} </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let el"> {{el.symbol}} </mat-cell>
+    </ng-container>
+
+   <mat-header-row *matHeaderRowDef="displayColumns"> </mat-header-row>
+   <mat-row *matRowDef="let row; columns: displayColumns "></mat-row>
+
+  </mat-table>
+</div>
