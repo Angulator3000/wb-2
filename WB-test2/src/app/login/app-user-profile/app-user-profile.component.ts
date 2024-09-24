@@ -17,10 +17,19 @@ export class AppUserProfileComponent {
   });
 
 
-save(){
-if (this.vhodGroup.valid) {
-  console.log(this.vhodGroup.value)
 
-}
-}
+  save():void{
+if (this.vhodGroup.valid) {
+  console.log(this.vhodGroup.value);
+    }
+  };
+
+  public get firstName(): FormControl {
+    return this.vhodGroup.get('firstName') as FormControl;
+  };
+
+  public get lastName(): FormControl {
+    return this.vhodGroup.get('lastName') as FormControl;
+  }
+
 }

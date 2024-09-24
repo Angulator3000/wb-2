@@ -15,6 +15,8 @@ import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { Task2Module } from './task2/task2.module';
 import { MatNativeDateModule } from '@angular/material/core';
+import { LoginModule } from './login/login.module';
+import { Task4RoutingModule } from './task4/task4-routing.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatButtonModule,
     BrowserAnimationsModule,
     Task2Module,
-    MatNativeDateModule
+    MatNativeDateModule,
+    LoginModule,
+    Task4RoutingModule
   ],
   providers: [
     provideAnimationsAsync()

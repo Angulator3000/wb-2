@@ -10,7 +10,7 @@ import { LoginModule } from '../login/login.module';
   imports: [
     CommonModule,
     Task2RoutingModule,
-    LoginModule
+    
   ]
 })
 export class Task2Module { }

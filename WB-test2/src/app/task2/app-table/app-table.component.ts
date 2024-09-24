@@ -10,11 +10,10 @@ import { MatSort } from '@angular/material/sort';
 })
 export class AppTableComponent    {
   dataSource: MatTableDataSource<PeriodicElement>;
-  displayColumns: string[];
+  displayColumns: string[]= this.generateDisplayColumns();
 
   constructor() {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    this.displayColumns = this.generateDisplayColumns();
   }
 
   @ViewChild(MatSort) sort?: MatSort;
@@ -25,6 +24,7 @@ export class AppTableComponent    {
     };
 
   }
+  
   generateDisplayColumns(): string[] {
     return Object.keys(ELEMENT_DATA[0]);
   };

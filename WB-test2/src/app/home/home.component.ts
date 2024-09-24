@@ -20,6 +20,10 @@ export class HomeComponent {
     this.route.navigate(['login']);
   }
 
+  stream(){
+    this.route.navigate(['stream']);
+  }
+
   }
 
 
