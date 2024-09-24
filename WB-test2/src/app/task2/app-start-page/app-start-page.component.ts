@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppTableComponent } from '../app-table/app-table.component';
 
@@ -8,11 +8,11 @@ import { AppTableComponent } from '../app-table/app-table.component';
   styleUrl: './app-start-page.component.scss'
 })
 export class AppStartPageComponent {
-  constructor(public dialog:MatDialog){
+  public toggle = false;
+  public dialog: MatDialog = inject(MatDialog);
 
-  }
-  bolen:boolean = false;
-  showTable(){
-    this.dialog.open(AppTableComponent)
+  openTable() {
+    this.dialog.open(AppTableComponent);
+    this.toggle = true;
   }
 }
