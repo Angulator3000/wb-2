@@ -2,7 +2,9 @@
   <button (click)="startStream()">Запустить</button>
 
   <h1>Данные потока  в консоли</h1>
-
+<p>Поток № 1  приходящее число {{stream1 |async}}</p>
+<p>Поток № 2  приходящее число {{stream2 |async}}</p>
+<p>Поток № 3  приходящее число {{stream3 |async}}</p>
   <h2>Сумма всех id:</h2>
   <p>{{ sumStreams$ | async }}</p>
 </div>
