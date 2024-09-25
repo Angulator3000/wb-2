@@ -10,23 +10,16 @@ import {sumStream$,mergeStream1$, } from './sterem'
 export class DataStreamComponent implements OnInit {
   mergeSteamt$!: Observable<any>;
   sumStreams$!: Observable<number>;
-  startStream$ = new Subject<void>()
-id:any
-stream!:any
+  startStream$ = new Subject<void>();
+
   ngOnInit(): void {
     this.startStream$.subscribe(() => {
       this.mergeSteamt$ = mergeStream1$;
       this.sumStreams$ = sumStream$;
-      this.stream =mergeStream1$.pipe(
-        map(data => data.stream)
-      );
-      this.id =mergeStream1$.pipe(
-        map(data => data.id)
-      );
     });
   };
 
   startStream(): void {
     this.startStream$.next();
-  }
+  };
 }

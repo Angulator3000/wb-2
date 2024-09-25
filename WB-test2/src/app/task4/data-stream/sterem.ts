@@ -3,7 +3,6 @@ import { combineLatest, delay, interval, map, merge, scan, startWith, takeUntil,
 
 const stream1$ = interval(1000).pipe(
   map((id) => ({id, stream:1})),
-  // tap((value:any) => console.log('stream1$:', value))
 );
 
 const stream2$ = interval(1500).pipe(
