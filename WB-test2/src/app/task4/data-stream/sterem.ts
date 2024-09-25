@@ -1,7 +1,9 @@
-import { delay, interval, map, merge, scan, startWith, takeUntil, timer } from "rxjs";
+import { combineLatest, delay, interval, map, merge, scan, startWith, takeUntil, tap, timer } from "rxjs";
+
 
 const stream1$ = interval(1000).pipe(
-  map((id) => ({id, stream:1}))
+  map((id) => ({id, stream:1})),
+  // tap((value:any) => console.log('stream1$:', value))
 );
 
 const stream2$ = interval(1500).pipe(
@@ -22,13 +24,12 @@ const delaydStream3$ = stream3$.pipe(
 
 const stopTimer$ = timer(30000);
 
-export const mergeStream1$ = merge(stream1$, delaydStream2$, delaydStream3$);
-
-export const stomMergeStream$ = mergeStream1$.pipe(
-  takeUntil(stopTimer$)
+export const mergeStream1$ = merge(stream1$, delaydStream2$, delaydStream3$).pipe(
+  tap((value: any) => console.log('sumStream$:', value))
 );
 
-export const sumStream$ = stomMergeStream$.pipe(
+export const sumStream$ = mergeStream1$.pipe(
   scan((acc, cur) => acc + cur.id, 0),
   startWith(0)
 );
+

@@ -1,5 +1,5 @@
 <div class="login-form" [formGroup]="vhodGroup">
-  <mat-form-field >
+  <mat-form-field>
     <mat-label>Имя</mat-label>
     <input matInput type="text" formControlName="firstName">
     <mat-error *ngIf="firstName?.hasError('required')">
@@ -13,21 +13,19 @@
   <mat-form-field appearance="fill">
     <mat-label>Фамилия</mat-label>
     <input matInput type="text" formControlName="lastName">
-    <mat-error *ngIf="firstName?.hasError('required')">
-      Укажите ваше <strong>имя</strong>
+    <mat-error *ngIf="lastName?.hasError('required')">
+      Укажите вашу <strong>фамилию</strong>
     </mat-error>
-    <mat-error *ngIf="firstName?.hasError('minLength') && firstName?.errors?.['minLength']">
-      Имя должно содержать минимум {{ lastName?.errors?.['minLength'].requiredLength! }} буквы
+    <mat-error *ngIf="lastName?.hasError('minLength') && lastName?.errors?.['minLength']">
+      Фамилия должна содержать минимум {{ lastName?.errors?.['minLength'].requiredLength! }} буквы
     </mat-error>
-
   </mat-form-field>
 
   <mat-form-field appearance="fill">
     <mat-label>Имейл</mat-label>
     <input matInput type="email" formControlName="email">
-
     <mat-error *ngIf="vhodGroup.get('email')?.hasError('email')">
-     Пожалуйста введите корректный имейл емейл
+      Пожалуйста, введите корректный имейл
     </mat-error>
   </mat-form-field>
 
@@ -38,5 +36,5 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <button  (click)="save()" [disabled]="vhodGroup.invalid">Сохранить</button>
+  <button (click)="save()" [disabled]="vhodGroup.invalid">Сохранить</button>
 </div>

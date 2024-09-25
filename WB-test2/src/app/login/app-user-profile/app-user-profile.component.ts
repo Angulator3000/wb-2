@@ -5,7 +5,7 @@ import { minLengthValidator } from '../../../../Validators/minLengthValidators';
 @Component({
   selector: 'app-app-user-profile',
   templateUrl: './app-user-profile.component.html',
-  styleUrl: './app-user-profile.component.scss'
+  styleUrls: ['./app-user-profile.component.scss']
 })
 export class AppUserProfileComponent {
 
@@ -16,20 +16,17 @@ export class AppUserProfileComponent {
     birthday: new FormControl('')
   });
 
-
-
-  save():void{
-if (this.vhodGroup.valid) {
-  console.log(this.vhodGroup.value);
+  save(): void {
+    if (this.vhodGroup.valid) {
+      console.log(this.vhodGroup.value);
     }
-  };
+  }
 
   public get firstName(): FormControl {
     return this.vhodGroup.get('firstName') as FormControl;
-  };
+  }
 
   public get lastName(): FormControl {
     return this.vhodGroup.get('lastName') as FormControl;
   }
-
 }
