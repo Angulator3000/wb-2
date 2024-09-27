@@ -17,6 +17,7 @@ import { Task2Module } from './task2/task2.module';
 import { MatNativeDateModule } from '@angular/material/core';
 import { LoginModule } from './login/login.module';
 import { Task4RoutingModule } from './task4/task4-routing.module';
+import { HttClientModule } from './htt-client/htt-client.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { Task4RoutingModule } from './task4/task4-routing.module';
     Task2Module,
     MatNativeDateModule,
     LoginModule,
-    Task4RoutingModule
+    Task4RoutingModule,
+    HttClientModule
+
   ],
   providers: [
     provideAnimationsAsync()

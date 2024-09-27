@@ -1,11 +1,18 @@
 <div>
   <button (click)="startStream()">Запустить</button>
 
-  <h1>Данные потока  в консоли</h1>
-<p>Поток № 1  приходящее число {{stream1 |async}}</p>
-<p>Поток № 2  приходящее число {{stream2 |async}}</p>
-<p>Поток № 3  приходящее число {{stream3 |async}}</p>
+  <h1>Данные потоков</h1>
+  <ul>
+    <li *ngFor="let item of (mergeSteamt$ | async)">
+      Поток {{ item.stream }} id = {{ item.id }}
+    </li>
+  </ul>
+
+  <p>Поток № 1 приходящее число {{ stream1 | async }}</p>
+  <p>Поток № 2 приходящее число {{ stream2 | async }}</p>
+  <p>Поток № 3 приходящее число {{ stream3 | async }}</p>
+
+  <h1>Данные потока в консоли</h1>
   <h2>Сумма всех id:</h2>
   <p>{{ sumStreams$ | async }}</p>
 </div>
-

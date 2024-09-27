@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { from, map, merge, Observable, Subject, tap } from 'rxjs';
-import {sumStream$,mergeStream1$,stream1$,stream2$,stream3$ } from './sterem'
+import {sumStream$,mergeStream1$,stream1$,stream2$,stream3$, dataStream$ } from './sterem'
 
 @Component({
   selector: 'app-data-stream',
@@ -11,27 +11,27 @@ export class DataStreamComponent implements OnInit {
   mergeSteamt$!: Observable<any>;
   sumStreams$!: Observable<number>;
   startStream$ = new Subject<void>();
-  stream1!:Observable<any>;
-  stream2!:Observable<any>;
-  stream3!:Observable<any>;
+  stream1!: Observable<number>;
+  stream2!: Observable<number>;
+  stream3!: Observable<number>;
 
   ngOnInit(): void {
     this.startStream$.subscribe(() => {
-      this.mergeSteamt$ = mergeStream1$;
+      this.mergeSteamt$ = dataStream$;
       this.sumStreams$ = sumStream$;
-      this.stream1 =stream1$.pipe(
-        map((item)=> item.id)
-      )
-      this.stream2 =stream2$.pipe(
-        map((item)=> item.id)
-      )
-      this.stream3 =stream3$.pipe(
-        map((item)=> item.id)
-      )
+      this.stream1 = stream1$.pipe(
+        map(item => item.id)
+      );
+      this.stream2 = stream2$.pipe(
+        map(item => item.id)
+      );
+      this.stream3 = stream3$.pipe(
+        map(item => item.id)
+      );
     });
-  };
+  }
 
   startStream(): void {
     this.startStream$.next();
-  };
+  }
 }

@@ -23,6 +23,9 @@ export class HomeComponent {
   stream(){
     this.route.navigate(['stream']);
   }
+  apiclient (){
+    this.route.navigate(['ApiClient']);
+  }
 
   }
 

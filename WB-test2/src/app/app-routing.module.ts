@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'table', loadChildren: () => import('./task2/task2.module').then(m => m.Task2Module) },
   {path: 'login', loadChildren: () => import ('./login/login.module').then(m => m.LoginModule)},
   {path: 'stream', loadChildren: () => import ('./task4/task4.module').then(m => m.Task4Module) },
+  {path: 'ApiClient', loadChildren: () => import ('./htt-client/htt-client.module').then(m => m.HttClientModule)},
   { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
