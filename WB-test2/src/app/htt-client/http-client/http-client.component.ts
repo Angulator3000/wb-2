@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { ApiServiceService } from '../api-service.service';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-http-client',
@@ -10,23 +10,36 @@ import { ApiServiceService } from '../api-service.service';
   styleUrl: './http-client.component.scss'
 })
 export class HttpClientComponent {
-  searchControl = new FormControl();
-  user$:Observable<any> = of(null);
-  favarites:any[] =JSON.parse(localStorage.getItem('favarites') || '[]');
-  showFavarite = false;
-  showHistoriPoisk = false;
-  showHistoryFavorites = false;
-  userSearchService:ApiServiceService = inject(ApiServiceService);
-  idPoisck:string[]= [];
-  faviriteHistory:any[] = [];
+ public searchControl = new FormControl();
+ public user$:Observable<any> = of(null);
+ public  favarites:any[] =JSON.parse(localStorage.getItem('favarites') || '[]');
+ public showFavarite = false;
+ public  showHistoriPoisk = false;
+ public  showHistoryFavorites = false;
+ public  faviriteHistory:any[] = [];
+ public  viewedUsers: any[] = []
+  private userSearchService:ApiServiceService = inject(ApiServiceService);
+  private snackBar: MatSnackBar = inject(MatSnackBar);
 
-  clickPoiskUser():void{
-    const userID = this.searchControl.value;
-    this.user$ = this.userSearchService.searchUserID(userID);
-    this.idPoisck.push(userID);
-  };
+  public   clickPoiskUser(): void {
+      const userID = this.searchControl.value;
+       this.user$ = this.userSearchService.searchUserID(userID).pipe(
+      tap(user => {
+         if (user) {
+          this.viewedUsers.push(user);
+      }
+    }),
+    catchError(() => {
+      this.snackBar.open('Пользователь не найден', 'Закрыть', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      return of(null);
+    })
+  );
+}
 
-  togleFavorite(user:any):void{
+public togleFavorite(user:any):void{
     const findeIndexFavorite = this.favarites.findIndex((item:any)=>item.id === user.id);
     if(findeIndexFavorite === -1){
       this.favarites.push(user);
@@ -37,27 +50,40 @@ export class HttpClientComponent {
     localStorage.setItem('favarites', JSON.stringify(this.favarites));
   }
 
-  isFavorite(user:any):boolean{
+  public isFavorite(user:any):boolean{
     return this.favarites.some((item:any)=> item.id === user.id);
   }
 
-  togleAllUser():void{
+  public togleAllUser():void{
     this.showFavarite = !this.showFavarite;
     this.user$ = this.showFavarite?of(this.favarites): of(null);
   }
 
-  togleSpisokID():void{
-  this.showHistoriPoisk = !this.showHistoriPoisk;
-  }
+  public togleSpisokID():void{
+    if (this.showHistoryFavorites){
+      this.showHistoriPoisk =!this.showHistoriPoisk;
+      this.showHistoryFavorites =!this.showHistoryFavorites;
+    } else{
+      this.showHistoriPoisk =!this.showHistoriPoisk;
+    }
+    }
 
-  clearSearch():void{
-    this.idPoisck =[];
+
+
+    public clearSearch():void{
+    this.viewedUsers = [];
     this.faviriteHistory = [];
     localStorage.clear();
   }
 
-  togleSpisokIDFavorite():void{
-    this.showHistoryFavorites = !this.showHistoryFavorites;
+  public togleSpisokIDFavorite():void{
+    if(this.showHistoriPoisk){
+      this.showHistoriPoisk = !this.showHistoriPoisk;
+      this.showHistoryFavorites = !this.showHistoryFavorites;
+    } else{
+      this.showHistoryFavorites =!this.showHistoryFavorites;
+    }
+
   }
 
 }

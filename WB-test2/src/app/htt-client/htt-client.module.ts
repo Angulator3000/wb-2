@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { HttClientRoutingModule } from './htt-client-routing.module';
 import { HttpClientComponent } from './http-client/http-client.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MockInterceptor } from './mock-interceptor';
 
 
 @NgModule({
@@ -16,7 +17,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     HttClientRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }
+  ],
 })
 export class HttClientModule { }

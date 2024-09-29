@@ -10,10 +10,14 @@ export class MockInterceptor implements HttpInterceptor {
     intercept(req:HttpRequest<any>,next:HttpHandler){
       if(req.url.includes('https://api.github.com/users/')){
         const userId = req.url.split('/').pop();
-        if(userId === '1')
-          return of(new HttpResponse({ status: 200,body: this.userSerch.getMockUser()}))
+        if(userId === '1'){
+             console.log('Использование фиктвных данных:', req.url);
+          const mockUser = this.userSerch.getMockUser();
+                  console.log('Фиктивные пользовательские данные:', mockUser);
+
+            return of(new HttpResponse({ status: 200,body: mockUser}))}
       }
-      
+
       return next.handle(req);
     }
 

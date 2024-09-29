@@ -6,7 +6,7 @@
       Укажите ваше <strong>имя</strong>
     </mat-error>
     <mat-error *ngIf="firstName?.hasError('minLength') && firstName?.errors?.['minLength']">
-      Имя должно содержать минимум {{ firstName?.errors?.['minLength'].requiredLength! }} буквы
+      Имя должно содержать минимум {{ firstName.errors?.['minLength'].requiredLength! }} буквы
     </mat-error>
   </mat-form-field>
 
@@ -17,7 +17,7 @@
       Укажите вашу <strong>фамилию</strong>
     </mat-error>
     <mat-error *ngIf="lastName?.hasError('minLength') && lastName?.errors?.['minLength']">
-      Фамилия должна содержать минимум {{ lastName?.errors?.['minLength'].requiredLength! }} буквы
+      Фамилия должна содержать минимум {{ lastName.errors?.['minLength'].requiredLength! }} буквы
     </mat-error>
   </mat-form-field>
 

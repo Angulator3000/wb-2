@@ -18,7 +18,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { LoginModule } from './login/login.module';
 import { Task4RoutingModule } from './task4/task4-routing.module';
 import { HttClientModule } from './htt-client/htt-client.module';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MockInterceptor } from './htt-client/mock-interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,11 +41,13 @@ import { HttClientModule } from './htt-client/htt-client.module';
     MatNativeDateModule,
     LoginModule,
     Task4RoutingModule,
-    HttClientModule
+    HttClientModule,
+    MatSnackBarModule
 
   ],
   providers: [
-    provideAnimationsAsync()
+   
+
   ],
   bootstrap: [AppComponent]
 })

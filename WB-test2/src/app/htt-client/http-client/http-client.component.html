@@ -1,30 +1,49 @@
 <div>
   <input type="text" [formControl]="searchControl" placeholder="Введите ID пользователя">
   <button (click)="clickPoiskUser()">Найчать поиск по ID</button>
-  <button (click)="togleAllUser()">{{ showFavarite ? 'Показать всех' : 'скрыть всех' }}</button>
 
-<div *ngIf="user$ |async as user">
-  <h3>{{user.login}}</h3>
-  <img [src]="user.avatar_url" alt="Avatar" width="100"><br>
-  <a [href]="user.html_url" target="_blank">Перейти на профиль гита</a>
-  <button (click)="togleFavorite(user)">{{ isFavorite(user) ? 'удалить из избранного' : 'Добавить в избранное' }}</button>
-</div>
-<div *ngIf="!(user$ | async)">
-  <p>не нашли такого</p>
-</div>
-
-<div>  <button (click)="clearSearch()">Очистить поиск</button>
-  <button (click)="togleSpisokID()">Показать всю историю поиска</button>
-  <button (click)="togleSpisokIDFavorite()">Показать кто хранится в избранном</button>
-
-  <div *ngIf="showHistoriPoisk">
-     <p  *ngFor="let item of faviriteHistory ">{{item? item : 'не найдено'}}</p>
-  </div>
-  <div *ngIf="showHistoryFavorites">
-    <div *ngFor="let user of favarites">
-      <h3>{{ user.login }}</h3>
+  <ng-container *ngIf="user$ | async as user">
+    @if (user) {
+      <h3>{{user.login}}</h3>
       <img [src]="user.avatar_url" alt="Avatar" width="100"><br>
       <a [href]="user.html_url" target="_blank">Перейти на профиль гита</a>
       <button (click)="togleFavorite(user)">{{ isFavorite(user) ? 'удалить из избранного' : 'Добавить в избранное' }}</button>
-    </div>
+    } @else {
+      <p>не нашли такого</p>
+    }
+  </ng-container>
+
+  <div>
+    <button (click)="clearSearch()">Очистить поиск</button>
+    <button (click)="togleSpisokID()">Показать всю историю поиска</button>
+    <button (click)="togleSpisokIDFavorite()">Показать кто хранится в избранном</button>
+
+    @if (showHistoriPoisk) {
+      <div>
+        <p *ngFor="let item of faviriteHistory">{{item ? item : 'не найдено'}}</p>
+      </div>
+    }
+
+    @if (showHistoryFavorites) {
+      <div>
+        @for (user of favarites; track user.login) {
+          <h3>{{ user.login }}</h3>
+          <img [src]="user.avatar_url" alt="Avatar" width="100"><br>
+          <a [href]="user.html_url" target="_blank">Перейти на профиль гита</a>
+          <button (click)="togleFavorite(user)">{{ isFavorite(user) ? 'удалить из избранного' : 'Добавить в избранное' }}</button>
+        }
+      </div>
+    }
+    @if (showHistoriPoisk) {
+      <div>
+        @for (user of viewedUsers; track user.login) {
+          <h3>{{ user.login }}</h3>
+          <img [src]="user.avatar_url" alt="Avatar" width="100"><br>
+          <a [href]="user.html_url" target="_blank">Перейти на профиль гита</a>
+          <button (click)="togleFavorite(user)">{{ isFavorite(user) ? 'удалить из избранного' : 'Добавить в избранное' }}</button>
+        }
+      </div>
+    }
+
   </div>
+</div>
